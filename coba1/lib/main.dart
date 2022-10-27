@@ -1,65 +1,56 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-          body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 120,
-            ),
-            Image.asset(
-              'images/antenna.png',
-              width: 167,
-              height: 167,
-            ),
-            SizedBox(
-              height: 38,
-            ),
-            Text(
-              "Oooopss!",
-              style: TextStyle(fontSize: 26, fontFamily: 'MontserratSemiBold'),
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            Text(
-              "No internet connection Found\n Check Your Connection",
-              style: TextStyle(fontSize: 18, fontFamily: 'MontserratRegular'),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 34,
-            ),
-            RaisedButton(
-              onPressed: () {},
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0)),
-              color: Colors.red,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(42, 12, 42, 12),
-                child: Text(
-                  "Try Again",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'MontserratSemiBold'),
-                ),
-              ),
-            )
-          ],
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cupertino Widget'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return CupertinoAlertDialog(
+                  title: Text('Ini Adalah Alert Dialog'),
+                  content: Text('Apakah anda suka?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text("No"),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text("Yes"),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: Text(
+            'Alert Dialog Button',
+            style: TextStyle(
+                fontSize: 15, color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
-      )),
+      ),
     );
   }
 }
